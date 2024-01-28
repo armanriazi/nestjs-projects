@@ -1,5 +1,5 @@
 export class UpdateItemDto {
-  id: number;
+  id: string;
   name: string;
   description: string;
   qty: number;

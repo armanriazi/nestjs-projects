@@ -5,7 +5,6 @@ import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class ItemsService {
-  
   /*  private readonly items: Item[] = [
     { id: '55', name: 'Item One', qty: 100, descripton: 'This is item one' },
     { id: '66', name: 'Item Two', qty: 100, descripton: 'This is item two' },
@@ -27,6 +26,19 @@ export class ItemsService {
   }
 
   async findOne(id: string): Promise<Item> {
-    return  await this.itemModel.findOne({_id: id});
+    return await this.itemModel.findOne({ _id: id });
+  }
+
+  async create(item: Item): Promise<Item> {
+    const newItem = new this.itemModel(item);
+    return await newItem.save();
+  }
+
+  async delete(id: string): Promise<Item> {
+    return await this.itemModel.findByIdAndDelete(id); // `Delete ${id}`;
+  }
+
+  async update(item: Item, id: string): Promise<Item> {
+    return await this.itemModel.findByIdAndUpdate(id, item, { new: true }); // `Update ${id}, Name: ${updateItemDto.name}`;
   }
 }
