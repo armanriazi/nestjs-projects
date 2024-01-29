@@ -13,6 +13,6 @@ export class ValidStudentMiddleware implements NestMiddleware {
     if(!studentExists){
       throw new HttpException("Student not found", 400)
     }
-    next();
+    next();//move on controller
   }
 }

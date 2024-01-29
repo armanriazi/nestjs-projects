@@ -18,7 +18,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('/signup/:userType')
-  async signup(
+  async signup( //(Req() req: Request) {console.log(req.body); return this.authService.signup();} //This was express syntax but fastify(dto based) syntax is below:
     @Body() body: SignupDto,
     @Param('userType', new ParseEnumPipe(UserType)) userType: UserType,
   ) {
